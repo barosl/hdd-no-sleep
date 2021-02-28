@@ -26,7 +26,7 @@ def main():
         os.execvp('py.exe', ['py.exe', sys.argv[0]])
 
     if not ctypes.windll.shell32.IsUserAnAdmin():
-        ret = ctypes.windll.shell32.ShellExecuteW(0, 'runas', sys.executable, sys.argv[0], 0, 5)
+        ret = ctypes.windll.shell32.ShellExecuteW(None, 'runas', sys.executable, f'"{sys.argv[0]}"', None, 1)
         if ret <= 32:
             print(f'* ShellExecuteW error: {ret}')
             return
